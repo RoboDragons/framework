@@ -44,9 +44,6 @@ RUN useradd --create-home --shell /bin/bash default
 USER default
 WORKDIR /home/default
 
-COPY --chown=default:default /data/docker/simulatorcli_entrypoint.bash .
-ENTRYPOINT ["tini", "--", "./simulatorcli_entrypoint.bash"]
-
 COPY --chown=default:default --from=build-stage /home/default/COPYING .
 COPY --chown=default:default --from=build-stage /home/default/COPYING.GPL .
 COPY --chown=default:default --from=build-stage /home/default/config config
