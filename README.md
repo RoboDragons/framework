@@ -1,4 +1,7 @@
 # ER-Force Framework
+これはER-Force Frameworkのフォークリポジトリです．本家と異なり，GitHub Actionsを用いて`master`ブランチ変更時に，`simulatorcli`用のDockerイメージを自動で作成するようになっています．
+作成したイメージ(パッケージ)は[RoboDragonsのPackages](https://github.com/RoboDragons/framework/pkgs/container/framework)へ反映されます．
+
 This is the framework of the SSL-Team ER-Force. Its main features are:
 - Simulating SSL games with a varying number of robots on different possible field sizes
 - Control robots, either autonomously using a Typescript/Lua AI script or manually
