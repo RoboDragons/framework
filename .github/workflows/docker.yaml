@@ -34,6 +34,6 @@ jobs:
           context: .
           file: data/docker/Dockerfile.simulatorcli
           push: true
-          tags: ghcr.io/${{ REPO }}:simulatorcli
+          tags: ghcr.io/${{ env.REPO }}:simulatorcli
           cache-from: type=gha
           cache-to: type=gha,mode=max
