@@ -24,13 +24,16 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
+      # リポジトリ名を小文字に変換して環境変数に保存する(ghcrにpushする際に小文字のリポジトリ名が必要)
+      - name: Downcase
+        run: |
+          echo "REPO=${GITHUB_REPOSITORY@L}" >>${GITHUB_ENV}
       - name: Build image
         uses: docker/build-push-action@v6
         with:
           context: .
           file: data/docker/Dockerfile.simulatorcli
           push: true
-          tags: ghcr.io/${{ github.repository }}:simulatorcli
+          tags: ghcr.io/${{ REPO }}:simulatorcli
           cache-from: type=gha
           cache-to: type=gha,mode=max
