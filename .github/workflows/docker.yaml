@@ -27,11 +27,13 @@ jobs:
       - name: Downcase
         run: |
           echo "REPO=${GITHUB_REPOSITORY@L}" >>${GITHUB_ENV}
-      # タグ名につかうコミットハッシュを取り出す
+      # タグの決定(コミットハッシュ使用)
       - name: Extract tags for Docker
         id: meta
         uses: docker/metadata-action@v4
         with:
+          images: |
+            ghcr.io/${{ env.REPO }}
           tags: |
             type=sha
       - name: Build image
@@ -40,6 +42,6 @@ jobs:
           context: .
           file: data/docker/Dockerfile.simulatorcli
           push: true
-          tags: ghcr.io/${{ env.REPO }}:${{ steps.meta.outputs.tags }}
+          tags: ${{ steps.meta.outputs.tags }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
