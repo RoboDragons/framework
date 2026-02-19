@@ -11,5 +11,11 @@ if [[ -n "$REALISM" ]]; then
 	echo "Passing '${REALISM_OPTION}'"
 fi
 
+LOCALHOST_OPTION=""
+if [[ -n "$LOCALHOST" ]]; then
+	LOCALHOST_OPTION="--localhost"
+	echo "Enabling '${LOCALHOST_OPTION}'"
+fi
+
 echo "Starting the ER-Force simulator-cli"
-exec ./build/bin/simulator-cli "$GEOMETRY_OPTION" "$REALISM_OPTION"
+exec ./build/bin/simulator-cli "$GEOMETRY_OPTION" "$REALISM_OPTION" "$LOCALHOST_OPTION"
